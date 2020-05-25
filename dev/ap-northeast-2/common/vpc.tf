@@ -1,4 +1,4 @@
-resource "aws_vpc" "cluster" {
+resource "aws_vpc" "cluster-vpc" {
 	cidr_block = "10.0.0.0/16"
 
 	tags = {
@@ -12,7 +12,7 @@ resource "aws_subnet" "cluster_subnet" {
 
 	availability_zone = local.zone_names[count.index]
 	cidr_block = "10.0.${count.index}.0/24"
-	vpc_id = aws_vpc.cluster.id
+	vpc_id = aws_vpc.cluster-vpc.id
 
 	tags = {
 		"Name" = "kuberkuber-${count.index}"
