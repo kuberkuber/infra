@@ -7,7 +7,7 @@ resource "aws_vpc" "cluster-vpc" {
 	}
 }
 
-resource "aws_subnet" "cluster_subnet" {
+resource "aws_subnet" "cluster-subnet" {
 	count = length(local.zone_names)
 
 	availability_zone = local.zone_names[count.index]
