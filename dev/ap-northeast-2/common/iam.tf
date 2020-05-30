@@ -1,5 +1,5 @@
-resource "aws_iam_role" "cluster-iam" {
-	name = "kuberkuber-cluster"
+resource "aws_iam_role" "eks-iam" {
+	name = "kuberkuber-eks"
 
 	assume_role_policy = <<POLICY
 {
@@ -18,12 +18,12 @@ resource "aws_iam_role" "cluster-iam" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "cluster-EKSClusterPolicy"{
+resource "aws_iam_role_policy_attachment" "eks-cluster-EKSClusterPolicy"{
 	policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-	role = aws_iam_role.cluster-iam.name
+	role = aws_iam_role.eks-iam.name
 }
 
-resource "aws_iam_role_policy_attachment" "cluster-EKSServicePolicy" {
+resource "aws_iam_role_policy_attachment" "eks-cluster-EKSServicePolicy" {
 	policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-	role = aws_iam_role.cluster-iam.name
+	role = aws_iam_role.eks-iam.name
 }
