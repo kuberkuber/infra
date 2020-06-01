@@ -15,17 +15,16 @@ data "aws_availability_zone" "c" {
   name = "ap-northeast-2c"
 }
 
-data "template_file" "kube-config" {
+data "template_file" "kube_config" {
 	template = file("${path.module}/templates/kube_config.yaml.tpl")
 
 	vars = {
 		CERTIFICATE = aws_eks_cluster.eks.certificate_authority[0].data
 		MASTER_ENDPOINT = aws_eks_cluster.eks.endpoint
-		CLUSTER_NAME = "kuberkuber"
-		ROLE_ARN = aws_iam_role.eks-iam.arn
+		CLUSTER_NAME = var.cluster_name
 	}
 }
-
+/*
 data "template_file" "aws-auth" {
   template = file("${path.module}/templates/aws_auth.yaml.tpl")
 
@@ -33,3 +32,4 @@ data "template_file" "aws-auth" {
     rolearn   = aws_iam_role.worker-iam.arn
   }
 }
+*/

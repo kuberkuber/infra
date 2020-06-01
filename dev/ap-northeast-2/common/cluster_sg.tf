@@ -1,7 +1,7 @@
-resource "aws_security_group" "eks-sg" {
-	name = "kuberkuber-eks"
+resource "aws_security_group" "eks" {
+	name = "${var.cluster_name}-eks"
 	description = "Cluster communication with worker nodes"
-	vpc_id = aws_vpc.cluster-vpc.id
+	vpc_id = aws_vpc.eks.id
 
 	egress {
 		from_port = 0
@@ -11,10 +11,10 @@ resource "aws_security_group" "eks-sg" {
 	}
 
 	tags = {
-		Name = "kuberkuber-eks"
+		Name = "${var.cluster_name}-eks"
 	}
 }
-
+/*
 resource "aws_security_group_rule" "eks_cluster_ingress_node_https" {
   description              = "Allow pods running extension API servers on port 443 to receive communication from cluster control plane."
   from_port                = 443
@@ -29,3 +29,4 @@ variable "instance_type" {
   default = "t3.medium"
   type    = string
 }
+*/
