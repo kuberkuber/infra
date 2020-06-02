@@ -3,7 +3,7 @@ terraform{
 	backend "s3" {
 		region = "ap-northeast-2"
 		bucket = "kuberkuber-terraform-state"
-		key = "current/dev/ap-northeast-2/common/terraform.tfstate"
+		key = "current/alpha/ap-northeast-2/common/terraform.tfstate"
 		encrypt = true
 		acl = "bucket-owner-full-control"
 		dynamodb_table = "kuberkuber-terraform-state-lock"

@@ -1,5 +1,7 @@
 resource "aws_vpc" "cluster-vpc" {
 	cidr_block = "10.0.0.0/16"
+	enable_dns_hostnames = true
+	enable_dns_support = true
 
 	tags = {
 		"Name" = "kuberkuber"
@@ -19,3 +21,22 @@ resource "aws_subnet" "cluster-subnet" {
 		"kubernetes.io/cluster/kuberkuber" = "shared"
 	}
 }
+
+resource "aws_route_table" "cluster" {
+	vpc_id = aws_vpc.cluster-vpc.id
+
+	route {
+		cidr_block = "0.0.0.0/0"
+		gateway_id = aws_internet_gateway.cluster-gateway.id
+	}
+}
+
+
+resource "aws_internet_gateway" "cluster-gateway" {
+  vpc_id = aws_vpc.cluster-vpc.id
+
+  tags = {
+	  Name = "kuberkuber-gateway"
+  }
+}
+
