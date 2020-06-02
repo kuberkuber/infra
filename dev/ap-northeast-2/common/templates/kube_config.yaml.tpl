@@ -3,10 +3,10 @@ clusters:
 - cluster:
     server: ${MASTER_ENDPOINT}
     certificate-authority-data: ${CERTIFICATE}
-  name: kubernetes
+  name: kuberkuber
 contexts:
 - context:
-    cluster: kubernetes
+    cluster: kuberkuber
     user: aws
   name: aws
 current-context: aws
