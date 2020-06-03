@@ -24,8 +24,3 @@ resource "aws_security_group_rule" "eks_cluster_ingress_node_https" {
   to_port                  = 443
   type                     = "ingress"
 }
-
-variable "instance_type" {
-  default = "t3.medium"
-  type    = string
-}
