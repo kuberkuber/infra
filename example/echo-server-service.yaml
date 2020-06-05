@@ -4,6 +4,7 @@ metadata:
   name: service-echo-server
 spec:
   type: ClusterIP
+  # type: NodePort
   selector:
     app: echo-server
   ports:
