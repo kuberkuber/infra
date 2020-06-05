@@ -69,13 +69,15 @@ data "aws_instances" "worker" {
 
 resource "aws_lb_target_group_attachment" "target-0" {
 	target_group_arn = aws_lb_target_group.http.arn
-	target_id = data.aws_instances.worker.private_ips[0]
+	# target_id = data.aws_instances.worker.ids[0]			# target_type=instance
+	target_id = data.aws_instances.worker.private_ips[0]	# target_type=ip
 	port = 30080
 }
 
 resource "aws_lb_target_group_attachment" "target-1" {
 	target_group_arn = aws_lb_target_group.http.arn
-	target_id = data.aws_instances.worker.private_ips[1]
+	# target_id = data.aws_instances.worker.ids[1]			# target_type=instance
+	target_id = data.aws_instances.worker.private_ips[1]	# target_type=ip
 	port = 30080
 }
 
