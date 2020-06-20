@@ -22,7 +22,6 @@ data "template_file" "kube-config" {
 		CERTIFICATE = aws_eks_cluster.eks.certificate_authority[0].data
 		MASTER_ENDPOINT = aws_eks_cluster.eks.endpoint
 		CLUSTER_NAME = var.cluster_name
-		ROLE_ARN = aws_iam_role.eks.arn
 	}
 }
 
